@@ -3,18 +3,53 @@ package selenium.pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class Exercise extends BasePage{
+import java.util.List;
+import java.util.stream.Collectors;
+
+public abstract class Exercise extends BasePage {
+    List<WebElement> instructions;
 
     public Exercise(WebDriver driver) {
         super(driver);
     }
 
-    protected WebElement getCheckSolutionBtn(){
+    protected void waitForInstructions(){
+        fluentWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//td/code")));
+        instructions = driver.findElements(By.xpath("//td/code"));
+    }
+
+    private String getTrialText() {
+        return instructions.get(instructions.size() - 1).getText();
+    }
+
+    public void checkSolution() {
+        getCheckSolutionBtn().click();
+        fluentWait.until(ExpectedConditions.not(ExpectedConditions.textToBePresentInElement(getSolutionResult(), getTrialText())));
+    }
+
+    protected List<String> getInstructionsTexts() {
+        return instructions.stream().limit(instructions.size() - 1).map(WebElement::getText).collect(Collectors.toList());
+    }
+
+    protected WebElement getButton(String buttonName){
+        fluentWait.until(ExpectedConditions.visibilityOfAllElements(driver.findElements(By.cssSelector(".btn_exercise"))));
+        return driver.findElement(By.xpath("//button[contains(text(), '" + buttonName + "')]"));
+    }
+
+    protected void typeInElement(WebElement element, String value){
+        element.click();
+        element.clear();
+        element.sendKeys(value);
+    }
+
+    public WebElement getSolutionResult() {
+        return driver.findElement(By.xpath("//pre[@id = 'trail']/code"));
+    }
+
+    private WebElement getCheckSolutionBtn() {
         return driver.findElement(By.xpath("//button[@id = 'solution']"));
     }
 
-    public WebElement getSuccessMessage(){
-        return driver.findElement(By.xpath("//pre[@id = 'trail']/code"));
-    }
 }

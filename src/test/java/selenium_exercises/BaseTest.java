@@ -6,7 +6,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.FluentWait;
 
-import java.time.Duration;
 
 public class BaseTest {
     protected WebDriver driver;
@@ -17,8 +16,8 @@ public class BaseTest {
     public void setupDriver() {
         System.setProperty("webdriver.chrome.driver", "C:/drivers/chromedriver.exe");
         driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.navigate().to(mainUrl);
+        driver.manage().window().maximize();
         fluentWait = new FluentWait<>(driver);
     }
 
