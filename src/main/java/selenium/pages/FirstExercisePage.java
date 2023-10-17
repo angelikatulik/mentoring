@@ -20,8 +20,6 @@ public class FirstExercisePage extends Exercise{
         for (String buttonName: getInstructionsTexts()) {
             Actions action = new Actions(driver);
             action.moveToElement(getButton(buttonName)).click(getButton(buttonName)).build().perform();
-            //fluentWait.withTimeout(Duration.ofSeconds(3)).until(ExpectedConditions.elementToBeClickable(getButton(buttonName)));
-            //getButton(buttonName).click();
             expectedTrialText = expectedTrialText + buttonName.toLowerCase();
             fluentWait.withTimeout(Duration.ofSeconds(10)).until(ExpectedConditions.textToBe(By.xpath("//pre[@id = 'trail']/code"), expectedTrialText));
         }
