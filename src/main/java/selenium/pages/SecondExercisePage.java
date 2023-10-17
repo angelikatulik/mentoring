@@ -13,8 +13,7 @@ public class SecondExercisePage extends Exercise {
     }
 
     private WebElement getInput() {
-        fluentWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//input")));
-        return driver.findElement(By.xpath("//input[@id = '" + getInstructionsTexts().get(1).toLowerCase().replaceAll(" ", "") +  "']"));
+        return fluentWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id = '" + getInstructionsTexts().get(1).toLowerCase().replaceAll(" ", "") +  "']")));
     }
 
     public SecondExercisePage typeInInput(){

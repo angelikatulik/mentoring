@@ -2,10 +2,7 @@ package selenium_exercises;
 
 import org.junit.jupiter.api.Test;
 import selenium.enums.ExerciseNumber;
-import selenium.pages.FirstExercisePage;
-import selenium.pages.GeneralExercisesPage;
-import selenium.pages.SecondExercisePage;
-import selenium.pages.ThirdExercisePage;
+import selenium.pages.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -21,7 +18,7 @@ public class GeneralExercisesTest extends BaseTest {
                 .clickOnButtons()
                 .checkSolution();
 
-        assertEquals(firstExercisePage.getSolutionResult().getText(), "OK. Good answer");
+        assertEquals("OK. Good answer", firstExercisePage.getSolutionResult().getText());
     }
 
     @Test // to zadanie nie dziala bo jest na stronie bug ale jesli by buga nie bylo to by dzialalo poprawnie
@@ -54,13 +51,11 @@ public class GeneralExercisesTest extends BaseTest {
     @Test
     public void exercise4Test() {
         GeneralExercisesPage generalExercisesPage = new GeneralExercisesPage(driver);
-        generalExercisesPage.clickOnExercise(ExerciseNumber.THIRD);
+        generalExercisesPage.clickOnExercise(ExerciseNumber.FOURTH);
 
-        ThirdExercisePage thirdExercisePage = new ThirdExercisePage(driver);
-        thirdExercisePage
-                .selectDropdownOption()
-                .checkSolution();
+        FourthExercisePage fourthExercisePage = new FourthExercisePage(driver);
 
-        assertEquals("OK. Good answer", thirdExercisePage.getSolutionResult().getText());
+        assertEquals("OK. Good answer", fourthExercisePage.getSolutionResult().getText());
+
     }
 }
