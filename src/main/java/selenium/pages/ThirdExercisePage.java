@@ -14,8 +14,7 @@ public class ThirdExercisePage extends Exercise {
     }
 
     private WebElement getDropdown() {
-        fluentWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//select")));
-        return driver.findElement(By.xpath("//select[@id = 's13']"));
+      return fluentWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//select[@id = 's13']")));
     }
 
     public ThirdExercisePage selectDropdownOption() {

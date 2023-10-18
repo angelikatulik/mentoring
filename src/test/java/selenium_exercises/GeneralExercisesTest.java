@@ -30,7 +30,8 @@ public class GeneralExercisesTest extends BaseTest {
         secondExercisePage
                 .typeInInput()
                 .clickOnBtn()
-                .checkSolution();;
+                .checkSolution();
+        ;
 
         assertEquals("OK. Good answer", secondExercisePage.getSolutionResult().getText());
     }
@@ -54,8 +55,9 @@ public class GeneralExercisesTest extends BaseTest {
         generalExercisesPage.clickOnExercise(ExerciseNumber.FOURTH);
 
         FourthExercisePage fourthExercisePage = new FourthExercisePage(driver);
+        fourthExercisePage.checkRadioButtons()
+                .checkSolution();
 
         assertEquals("OK. Good answer", fourthExercisePage.getSolutionResult().getText());
-
     }
 }
