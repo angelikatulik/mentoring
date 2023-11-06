@@ -1,4 +1,4 @@
-package selenium_exercises;
+package general_exercises;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;

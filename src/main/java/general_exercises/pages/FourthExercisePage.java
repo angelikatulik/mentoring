@@ -1,4 +1,4 @@
-package selenium.pages;
+package general_exercises.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

@@ -1,10 +1,10 @@
-package selenium.pages;
+package general_exercises.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import selenium.enums.ExerciseNumber;
+import general_exercises.enums.ExerciseNumber;
 
 public class GeneralExercisesPage extends BasePage{
 

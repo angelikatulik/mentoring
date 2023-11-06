@@ -1,16 +1,18 @@
-package selenium_exercises;
+package general_exercises;
 
 import org.junit.jupiter.api.Test;
-import selenium.enums.ExerciseNumber;
-import selenium.pages.*;
+import general_exercises.enums.ExerciseNumber;
+import general_exercises.pages.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class GeneralExercisesTest extends BaseTest {
+    private final String successMessage = "OK. Good answer";
+    GeneralExercisesPage generalExercisesPage;
 
     @Test
     public void exercise1Test() {
-        GeneralExercisesPage generalExercisesPage = new GeneralExercisesPage(driver);
+        generalExercisesPage = new GeneralExercisesPage(driver);
         generalExercisesPage.clickOnExercise(ExerciseNumber.FIRST);
 
         FirstExercisePage firstExercisePage = new FirstExercisePage(driver);
@@ -18,12 +20,12 @@ public class GeneralExercisesTest extends BaseTest {
                 .clickOnButtons()
                 .checkSolution();
 
-        assertEquals("OK. Good answer", firstExercisePage.getSolutionResult().getText());
+        assertEquals(successMessage, firstExercisePage.getSolutionResult().getText());
     }
 
     @Test // to zadanie nie dziala bo jest na stronie bug ale jesli by buga nie bylo to by dzialalo poprawnie
     public void exercise2Test() {
-        GeneralExercisesPage generalExercisesPage = new GeneralExercisesPage(driver);
+        generalExercisesPage = new GeneralExercisesPage(driver);
         generalExercisesPage.clickOnExercise(ExerciseNumber.SECOND);
 
         SecondExercisePage secondExercisePage = new SecondExercisePage(driver);
@@ -31,14 +33,13 @@ public class GeneralExercisesTest extends BaseTest {
                 .typeInInput()
                 .clickOnBtn()
                 .checkSolution();
-        ;
 
-        assertEquals("OK. Good answer", secondExercisePage.getSolutionResult().getText());
+        assertEquals(successMessage, secondExercisePage.getSolutionResult().getText());
     }
 
     @Test
     public void exercise3Test() {
-        GeneralExercisesPage generalExercisesPage = new GeneralExercisesPage(driver);
+        generalExercisesPage = new GeneralExercisesPage(driver);
         generalExercisesPage.clickOnExercise(ExerciseNumber.THIRD);
 
         ThirdExercisePage thirdExercisePage = new ThirdExercisePage(driver);
@@ -46,18 +47,18 @@ public class GeneralExercisesTest extends BaseTest {
                 .selectDropdownOption()
                 .checkSolution();
 
-        assertEquals("OK. Good answer", thirdExercisePage.getSolutionResult().getText());
+        assertEquals(successMessage, thirdExercisePage.getSolutionResult().getText());
     }
 
     @Test
     public void exercise4Test() {
-        GeneralExercisesPage generalExercisesPage = new GeneralExercisesPage(driver);
+        generalExercisesPage = new GeneralExercisesPage(driver);
         generalExercisesPage.clickOnExercise(ExerciseNumber.FOURTH);
 
         FourthExercisePage fourthExercisePage = new FourthExercisePage(driver);
         fourthExercisePage.checkRadioButtons()
                 .checkSolution();
 
-        assertEquals("OK. Good answer", fourthExercisePage.getSolutionResult().getText());
+        assertEquals(successMessage, fourthExercisePage.getSolutionResult().getText());
     }
 }

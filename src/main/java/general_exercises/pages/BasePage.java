@@ -1,4 +1,4 @@
-package selenium.pages;
+package general_exercises.pages;
 
 import lombok.Getter;
 import org.openqa.selenium.WebDriver;

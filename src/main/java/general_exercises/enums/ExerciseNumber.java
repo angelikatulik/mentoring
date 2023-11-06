@@ -1,4 +1,4 @@
-package selenium.enums;
+package general_exercises.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
