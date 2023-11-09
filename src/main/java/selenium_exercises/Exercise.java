@@ -20,7 +20,7 @@ public abstract class Exercise <T extends Exercise> extends BasePage{
     }
 
     protected List<String> getInstructionsTexts() {
-        return instructions.stream().limit(instructions.size()-1).map(WebElement::getText).collect(Collectors.toList());
+        return instructions.stream().map(WebElement::getText).collect(Collectors.toList());
     }
 
     public WebElement getSolutionResult() {
