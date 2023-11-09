@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 
-public class ThirdExercisePage extends Exercise {
+public class ThirdExercisePage extends ExerciseAbstractPage<ThirdExercisePage> {
 
     public ThirdExercisePage(WebDriver driver) {
         super(driver);

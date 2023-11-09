@@ -10,19 +10,19 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class FourthExercisePage extends Exercise {
+public class FourthExercisePage extends ExerciseAbstractPage<FourthExercisePage>{
 
     public FourthExercisePage(WebDriver driver) {
         super(driver);
         waitForInstructions();
     }
 
-    private List<WebElement> waitForGroups() {
+    private List<WebElement> waitForRadioButtonsGroups() {
         return fluentWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//div[@class = 'six columns']")));
     }
 
-    private List<WebElement> getGroups() {
-        waitForGroups();
+    private List<WebElement> getRadioButtonsGroups() {
+        waitForRadioButtonsGroups();
         List<WebElement> groups = new ArrayList<>();
         for (int i = 1; i < instructions.size(); i++) {
             groups.add(driver.findElement(By.xpath("(//div[@class = 'six columns'])[" + i + "]")));
@@ -31,11 +31,11 @@ public class FourthExercisePage extends Exercise {
     }
 
     public FourthExercisePage checkRadioButtons() {
-        for (WebElement group : getGroups()) {
+        for (WebElement group : getRadioButtonsGroups()) {
             String textContent = group.getAttribute("textContent");
             List<String> texts = Arrays.stream(textContent.split("\\n")).filter(part -> (part.trim()).length() != 0).collect(Collectors.toList());
             List<WebElement> inputsByGroup = group.findElements(By.xpath("input"));
-            String textToCheck = texts.stream().filter(text -> text.contains(getInstructionsTexts().get(getGroups().indexOf(group)))).findAny().get();
+            String textToCheck = texts.stream().filter(text -> text.contains(getInstructionsTexts().get(getRadioButtonsGroups().indexOf(group)))).findAny().get();
             inputsByGroup.get(texts.indexOf(textToCheck)-1).click();
         }
         return this;

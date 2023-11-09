@@ -1,18 +1,16 @@
 package general_exercises.pages;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import java.time.Duration;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public abstract class Exercise extends BasePage {
-    List<WebElement> instructions;
+public abstract class ExerciseAbstractPage<T extends ExerciseAbstractPage> extends BasePage{
+    protected List<WebElement> instructions;
 
-    public Exercise(WebDriver driver) {
+    public ExerciseAbstractPage(WebDriver driver) {
         super(driver);
     }
 
@@ -24,10 +22,11 @@ public abstract class Exercise extends BasePage {
         return instructions.get(instructions.size() - 1).getText();
     }
 
-    public void checkSolution() {
-        fluentWait.withTimeout(Duration.ofSeconds(5)).until(ExpectedConditions.textToBePresentInElement(getSolutionResult(), getTrialText()));
+    public T checkSolution() {
+        fluentWait.until(ExpectedConditions.textToBePresentInElement(getSolutionResult(), getTrialText()));
         getCheckSolutionBtn().click();
         fluentWait.until(ExpectedConditions.not(ExpectedConditions.textToBePresentInElement(getSolutionResult(), getTrialText())));
+    return (T) this;
     }
 
     protected List<String> getInstructionsTexts() {
@@ -38,10 +37,11 @@ public abstract class Exercise extends BasePage {
         return fluentWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[contains(text(), '" + buttonName + "')]")));
     }
 
-    protected void typeInElement(WebElement element, String value) {
+    protected T typeInElement(WebElement element, String value) {
         element.click();
         element.clear();
         element.sendKeys(value);
+        return (T) this;
     }
 
     public WebElement getSolutionResult() {
@@ -51,5 +51,4 @@ public abstract class Exercise extends BasePage {
     private WebElement getCheckSolutionBtn() {
         return driver.findElement(By.xpath("//button[@id = 'solution']"));
     }
-
 }

@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class SecondExercisePage extends Exercise {
+public class SecondExercisePage extends ExerciseAbstractPage<SecondExercisePage> {
 
     public SecondExercisePage(WebDriver driver) {
         super(driver);

@@ -1,4 +1,4 @@
-package general_exercises;
+package selenium_tests;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -7,7 +7,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class BaseTest {
     protected WebDriver driver;
-    private static final String mainUrl = "https://antycaptcha.amberteam.pl/general_exercises/";
+    private static final String mainUrl = "https://antycaptcha.amberteam.pl/stf/";
 
     @BeforeEach
     public void setupDriver() {

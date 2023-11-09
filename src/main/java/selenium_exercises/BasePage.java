@@ -1,4 +1,4 @@
-package general_exercises.pages;
+package selenium_exercises;
 
 import lombok.Getter;
 import org.openqa.selenium.WebDriver;
@@ -13,7 +13,6 @@ public abstract class BasePage {
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
-        fluentWait = new FluentWait<WebDriver>(driver).withTimeout(Duration.ofSeconds(3)).pollingEvery(Duration.ofMillis(500));
+        this.fluentWait = new FluentWait<WebDriver>(driver).withTimeout(Duration.ofSeconds(3)).pollingEvery(Duration.ofMillis(500));
     }
-
 }

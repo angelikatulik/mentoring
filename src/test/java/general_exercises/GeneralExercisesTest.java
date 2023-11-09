@@ -4,61 +4,65 @@ import org.junit.jupiter.api.Test;
 import general_exercises.enums.ExerciseNumber;
 import general_exercises.pages.*;
 
+import static general_exercises.enums.ExerciseNumber.FIRST;
+import static general_exercises.enums.ExerciseNumber.THIRD;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class GeneralExercisesTest extends BaseTest {
     private final String successMessage = "OK. Good answer";
-    GeneralExercisesPage generalExercisesPage;
+    private HomePage homePage;
+    private String solutionResultText;
 
     @Test
     public void exercise1Test() {
-        generalExercisesPage = new GeneralExercisesPage(driver);
-        generalExercisesPage.clickOnExercise(ExerciseNumber.FIRST);
+        homePage = new HomePage(driver);
+        FirstExercisePage firstExercisePage = (FirstExercisePage) homePage.clickOnExercise(FIRST);
 
-        FirstExercisePage firstExercisePage = new FirstExercisePage(driver);
-        firstExercisePage
+        solutionResultText = firstExercisePage
                 .clickOnButtons()
-                .checkSolution();
+                .checkSolution()
+                .getSolutionResult().getText();
 
-        assertEquals(successMessage, firstExercisePage.getSolutionResult().getText());
+        assertEquals(successMessage, homePage.getSolutionResult().getText());
     }
 
-    @Test // to zadanie nie dziala bo jest na stronie bug ale jesli by buga nie bylo to by dzialalo poprawnie
+    @Test
     public void exercise2Test() {
-        generalExercisesPage = new GeneralExercisesPage(driver);
-        generalExercisesPage.clickOnExercise(ExerciseNumber.SECOND);
+        homePage = new HomePage(driver);
+        SecondExercisePage secondExercisePage = (SecondExercisePage) homePage.clickOnExercise(ExerciseNumber.SECOND);
 
-        SecondExercisePage secondExercisePage = new SecondExercisePage(driver);
-        secondExercisePage
+        solutionResultText = secondExercisePage
                 .typeInInput()
                 .clickOnBtn()
-                .checkSolution();
+                .checkSolution()
+                .getSolutionResult().getText();
 
-        assertEquals(successMessage, secondExercisePage.getSolutionResult().getText());
+        assertEquals(successMessage, solutionResultText);
     }
 
     @Test
     public void exercise3Test() {
-        generalExercisesPage = new GeneralExercisesPage(driver);
-        generalExercisesPage.clickOnExercise(ExerciseNumber.THIRD);
+        homePage = new HomePage(driver);
+        ThirdExercisePage thirdExercisePage = (ThirdExercisePage)  homePage.clickOnExercise(THIRD);
 
-        ThirdExercisePage thirdExercisePage = new ThirdExercisePage(driver);
-        thirdExercisePage
+        solutionResultText = thirdExercisePage
                 .selectDropdownOption()
-                .checkSolution();
+                .checkSolution()
+                .getSolutionResult().getText();
 
-        assertEquals(successMessage, thirdExercisePage.getSolutionResult().getText());
+        assertEquals(successMessage, solutionResultText);
     }
 
     @Test
     public void exercise4Test() {
-        generalExercisesPage = new GeneralExercisesPage(driver);
-        generalExercisesPage.clickOnExercise(ExerciseNumber.FOURTH);
+        homePage = new HomePage(driver);
+        FourthExercisePage fourthExercisePage = (FourthExercisePage) homePage.clickOnExercise(ExerciseNumber.FOURTH);
 
-        FourthExercisePage fourthExercisePage = new FourthExercisePage(driver);
-        fourthExercisePage.checkRadioButtons()
-                .checkSolution();
+        solutionResultText = fourthExercisePage
+                .checkRadioButtons()
+                .checkSolution()
+                .getSolutionResult().getText();
 
-        assertEquals(successMessage, fourthExercisePage.getSolutionResult().getText());
+        assertEquals(successMessage, solutionResultText);
     }
 }
